@@ -44,3 +44,6 @@ def setup(args):
     # Write the files
     with open("main.py", "w") as f:
         f.write(cst.pattern_main_py % answers)
+    # Write the specs
+    with open(f"installer/installer.spec", "w") as f:
+        f.write(cst.pattern_spec % answers)

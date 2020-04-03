@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from src.commands import setup, config
+from src.commands import setup, config, freeze
 
 
 parser = argparse.ArgumentParser()
@@ -21,6 +21,13 @@ config_parser = subparsers.add_parser(
 )
 config_parser.add_argument("parameter", nargs="*", help="parameters to edit")
 config_parser.set_defaults(func=config)
+
+freeze_parser = subparsers.add_parser(
+    "freeze",
+    description="Create an executable using PyInstaller",
+    help="create an executable using PyInstaller"
+)
+freeze_parser.set_defaults(func=freeze)
 
 args = parser.parse_args()
 

@@ -7,3 +7,6 @@ path_ico_default = os.path.join(dir_home, "resources", "default.ico")
 
 with open(os.path.join(dir_home, "resources", "main.py.pattern")) as f:
     pattern_main_py = f.read()
+
+with open(os.path.join(dir_home, "resources", "spec.pattern")) as f:
+    pattern_spec = f.read()

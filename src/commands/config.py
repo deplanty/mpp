@@ -78,3 +78,7 @@ def config(args):
         answers.update(**new_answers)
         with open(".mmpcfg", "w") as f:
             json.dump(answers, f)
+
+    # Rewrite the specs file
+    with open(f"installer/installer.spec", "w") as f:
+        f.write(cst.pattern_spec % answers)
