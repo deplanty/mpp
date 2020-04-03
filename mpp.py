@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from src.commands import setup
+from src.commands import setup, config
 
 
 parser = argparse.ArgumentParser()
@@ -13,6 +13,14 @@ setup_parser = subparsers.add_parser(
     help="ask some questions to setup the project"
 )
 setup_parser.set_defaults(func=setup)
+
+config_parser = subparsers.add_parser(
+    "config",
+    description="Show project parameters and edit them",
+    help="show project parameters and edit them"
+)
+config_parser.add_argument("parameter", nargs="*", help="parameters to edit")
+config_parser.set_defaults(func=config)
 
 args = parser.parse_args()
 

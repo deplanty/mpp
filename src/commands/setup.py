@@ -39,7 +39,7 @@ def setup(args):
     answers["icon"] = "resources/images/icon.ico"
 
     # Write the config file
-    with open(".mwocfg", "w") as f:
+    with open(".mmpcfg", "w") as f:
         json.dump(answers, f, indent=4)
     # Write the files
     with open("main.py", "w") as f:
