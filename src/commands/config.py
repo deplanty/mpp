@@ -8,9 +8,9 @@ from src.utils import ask, constants as cst
 
 def config(args):
     # Get project config file
-    if not os.path.exists(".mmpcfg"):
+    if not os.path.exists(".mpp_config"):
         sys.exit("Please setup your environment by using the 'setup' command")
-    with open(".mmpcfg") as f:
+    with open(".mpp_config") as f:
         answers = json.load(f)
 
     # If there is no parameter
@@ -76,7 +76,7 @@ def config(args):
     ).lower() == "y"
     if is_ok:
         answers.update(**new_answers)
-        with open(".mmpcfg", "w") as f:
+        with open(".mpp_config", "w") as f:
             json.dump(answers, f)
 
     # Rewrite the specs file
