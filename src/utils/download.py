@@ -6,6 +6,7 @@ import zipfile
 
 import src.utils.constants as cst
 
+
 def shell_exec_as_user():
     """
     Download ShellExecAsUser.dll for NSIS:
@@ -24,7 +25,7 @@ def shell_exec_as_user():
 
 
     # URL and file names
-    url = "https://nsis.sourceforge.io/mediawiki/images/c/c7/ShellExecAsUser.zip"
+    url = cst.link_shellexecasuser
     zipname = get_zip_name(url)
     dllname = get_dll_name(zipname)
     dl_output = os.path.dirname(cst.path_dll_shellexecasuser)
