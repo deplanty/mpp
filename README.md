@@ -43,3 +43,9 @@ $ mpp freeze
 $ target\AmazingProject\AmazingProject.exe
 'AmazingProject' is ready to be used
 ```
+
+Create an installer for your project with [NSIS](https://nsis.sourceforge.io/Main_Page)
+```
+$ mpp installer
+[NSIS stdout...]
+```
