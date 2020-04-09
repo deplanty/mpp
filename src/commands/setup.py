@@ -10,21 +10,14 @@ def setup(args=None):
     Asks information to the user and setup the environment
     """
 
+    current_dir = os.path.basename(os.getcwd())
+    username = os.path.basename(os.path.expanduser("~"))
+
     answers = dict()
-    answers["name"] = ask.question("What is your project name?", required=True)
-    answers["author"] = ask.question("What is your author name?", required=True)
-    answers["console"] = ask.question("Do you want to display the console (y/n)?", "n")
+    answers["name"] = ask.question("What is your project name?", current_dir, required=True)
+    answers["author"] = ask.question("What is your author name?", username, required=True)
+    answers["console"] = ask.question("Do you want to display the console (y/n)?", "y")
     answers["console"] = answers["console"].lower() == "y"
-    is_icon = ask.question("Are you using an icon (y/n)?", "y")
-    if is_icon.lower() == "y":
-        filename = ask.icon()
-        if filename != "":
-            answers["icon"] = filename
-            print(" -→ Using:", filename)
-        else:
-            answers["icon"] = None
-    else:
-        answers["icon"] = None
 
     # Create folders
     os.makedirs("installer", exist_ok=True)
@@ -32,11 +25,9 @@ def setup(args=None):
     os.makedirs("src", exist_ok=True)
 
     # Add icon
-    if answers["icon"]:
-        shutil.copy(answers["icon"], "resources/images/icon.ico")
-    else:
-        shutil.copy(cst.path_ico_default, "resources/images/icon.ico")
+    shutil.copy(cst.path_ico_default, "resources/images/icon.ico")
     answers["icon"] = "resources/images/icon.ico"
+    print(f"The project's icon is stored in {answers['icon']}")
 
     # Write the config file
     with open(".mpp_config", "w") as f:

@@ -36,11 +36,3 @@ def question(message, default="", required=False):
                 break
 
     return answer
-
-
-def icon():
-    tkinter.Tk().withdraw()
-    return tkinter.filedialog.askopenfilename(
-        initialdir=".",
-        filetypes=[("Icons", "*.ico"), ("All files", "*.*")]
-    )
