@@ -6,13 +6,13 @@ import zipfile
 
 import src.utils.constants as cst
 
-def shell_exec_as_user(exists_ok=False):
+def shell_exec_as_user():
     """
     Download ShellExecAsUser.dll for NSIS:
     https://nsis.sourceforge.io/mediawiki/images/c/c7/ShellExecAsUser.zip
 
-    Args:
-        exists_ok (bool): re-download the file or not
+    Returns:
+        str: patht to the downloaded file
     """
 
     def get_zip_name(url):
@@ -22,10 +22,6 @@ def shell_exec_as_user(exists_ok=False):
         url, _ = os.path.splitext(url)
         return f"{url}.dll"
 
-
-    # Check if file already exists
-    if not exists_ok and os.path.exists(cst.path_dll_shellexecasuser):
-        return
 
     # URL and file names
     url = "https://nsis.sourceforge.io/mediawiki/images/c/c7/ShellExecAsUser.zip"
@@ -43,3 +39,5 @@ def shell_exec_as_user(exists_ok=False):
             shutil.copyfileobj(response, output)
         with zipfile.ZipFile(dl_path) as zf:
             zf.extract(dllname, dl_output)
+
+    return cst.path_dll_shellexecasuser

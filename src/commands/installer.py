@@ -3,7 +3,7 @@ import os
 import shutil
 import sys
 
-from src.utils import download
+from src.utils import download, constants as cst
 
 def installer(args):
     # PyInstaller exists
@@ -14,4 +14,7 @@ def installer(args):
     # os.system("pyinstaller installer.spec")
     print("This doesn't do anything yet")
 
-    download.shell_exec_as_user()
+    if not os.path.exists(cst.path_dll_shellexecasuser):
+        print("Download ShellExecAsUser.")
+        download.shell_exec_as_user()
+
