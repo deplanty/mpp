@@ -14,9 +14,10 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/deplanty/mpp",
     packages=find_packages(),
+    include_package_data=True,
     entry_points={
         "console_scripts": [
-            "mpp = mpp.main:main",
+            "mpp = mpp:main",
         ]
     },
     classifiers=[

@@ -4,7 +4,7 @@ import tempfile
 import urllib.request
 import zipfile
 
-import src.utils.constants as cst
+import mpp.src.utils.constants as cst
 
 
 def shell_exec_as_user():

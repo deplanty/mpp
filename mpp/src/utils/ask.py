@@ -1,6 +1,3 @@
-import tkinter
-import tkinter.filedialog
-
 
 def question(message, default="", required=False):
     """
