@@ -2,7 +2,7 @@ import json
 import os
 import shutil
 
-from src.utils import ask, constants as cst
+from mpp.src.utils import ask, constants as cst
 
 
 def setup(args=None):

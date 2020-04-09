@@ -3,7 +3,7 @@ import os
 import shutil
 import sys
 
-from src.utils import ask
+from mpp.src.utils import ask
 
 def freeze(args=None):
     """

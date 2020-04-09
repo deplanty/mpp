@@ -3,7 +3,7 @@
 import argparse
 import sys
 
-from src.commands import setup, config, freeze, installer
+from mpp.src.commands import setup, config, freeze, installer
 
 
 def main():

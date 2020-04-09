@@ -3,8 +3,8 @@ import os
 import shutil
 import sys
 
-from src.commands import freeze
-from src.utils import ask, download, constants as cst
+from mpp.src.commands import freeze
+from mpp.src.utils import ask, download, constants as cst
 
 
 def installer(args=None):

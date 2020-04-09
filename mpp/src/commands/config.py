@@ -3,7 +3,7 @@ import os
 import shutil
 import sys
 
-from src.utils import ask, constants as cst
+from mpp.src.utils import ask, constants as cst
 
 
 def config(args=None):
@@ -53,28 +53,6 @@ def config(args=None):
             default="y" if answers["console"] else "n"
         )
         new_answers["console"] = new_answers["console"].lower() == "y"
-    if "icon" in args.parameter:
-        is_icon = ask.question("Are you using an icon (y/n)?", "y")
-        if is_icon.lower() == "y":
-            filename = ask.icon()
-            if filename != "":
-                new_answers["icon"] = filename
-                print(" -→ Using:", filename)
-            else:
-                new_answers["icon"] = None
-        else:
-            new_answers["icon"] = None
-
-    # Add icon
-    try:
-        if answers["icon"]:
-            shutil.copy(answers["icon"], "resources/images/icon.ico")
-        else:
-            shutil.copy(cst.path_ico_default, "resources/images/icon.ico")
-        answers["icon"] = "resources/images/icon.ico"
-    except:
-        # TODO: add log
-        pass
 
     # Validate modifications
     is_ok = ask.question(
