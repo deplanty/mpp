@@ -6,6 +6,13 @@ import sys
 from src.utils import ask
 
 def freeze(args=None):
+    """
+    Freezes the project to create an executable
+
+    Args:
+        args (argparse args): parameters from parser.parse_args()
+    """
+
     # PyInstaller exists
     if not shutil.which("pyinstaller"):
         print("It seems that PyInstaller is not installed.")

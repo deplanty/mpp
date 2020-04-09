@@ -8,6 +8,13 @@ from src.utils import ask, download, constants as cst
 
 
 def installer(args=None):
+    """
+    Creates an installer with the created executable with `freeze`
+
+    Args:
+        args (argparse args): parameters from parser.parse_args()
+    """
+
     # Load parameters file
     with open(".mpp_config") as f:
         config = json.load(f)

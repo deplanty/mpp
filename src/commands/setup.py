@@ -8,6 +8,9 @@ from src.utils import ask, constants as cst
 def setup(args=None):
     """
     Asks information to the user and setup the environment
+
+    Args:
+        args (argparse args): parameters from parser.parse_args()
     """
 
     current_dir = os.path.basename(os.getcwd())

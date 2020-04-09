@@ -7,6 +7,13 @@ from src.utils import ask, constants as cst
 
 
 def config(args=None):
+    """
+    Show or edit configuration parameters
+
+    Args:
+        args (argparse args): parameters from parser.parse_args()
+    """
+
     # Get project config file
     if not os.path.exists(".mpp_config"):
         sys.exit("Please setup your environment by using the 'setup' command")
