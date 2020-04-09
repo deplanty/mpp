@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from src.commands import setup, config, freeze
+from src.commands import setup, config, freeze, installer
 
 
 parser = argparse.ArgumentParser()
@@ -28,6 +28,13 @@ freeze_parser = subparsers.add_parser(
     help="create an executable using PyInstaller"
 )
 freeze_parser.set_defaults(func=freeze)
+
+installer_parser = subparsers.add_parser(
+    "installer",
+    description="Create an installer with NSIS",
+    help="create an installer with NSIS"
+)
+installer_parser.set_defaults(func=installer)
 
 args = parser.parse_args()
 
