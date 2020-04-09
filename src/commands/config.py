@@ -6,7 +6,7 @@ import sys
 from src.utils import ask, constants as cst
 
 
-def config(args):
+def config(args=None):
     # Get project config file
     if not os.path.exists(".mpp_config"):
         sys.exit("Please setup your environment by using the 'setup' command")

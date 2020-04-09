@@ -5,7 +5,7 @@ import shutil
 from src.utils import ask, constants as cst
 
 
-def setup(args):
+def setup(args=None):
     """
     Asks information to the user and setup the environment
     """
@@ -47,3 +47,6 @@ def setup(args):
     # Write the specs
     with open(f"installer/installer.spec", "w") as f:
         f.write(cst.pattern_spec % answers)
+    # Write the nsis file
+    with open(f"installer/installer.nsi", "w") as f:
+        f.write(cst.pattern_nsis % answers)

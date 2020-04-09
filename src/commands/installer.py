@@ -3,25 +3,46 @@ import os
 import shutil
 import sys
 
+from src.commands import freeze
 from src.utils import ask, download, constants as cst
 
-def installer(args):
-    # PyInstaller exists
-    if not shutil.which("makensis"):
-        sys.exit("It seems that NSIS is not installed or in the PATH.")
 
+def installer(args=None):
+    # Load parameters file
+    with open(".mpp_config") as f:
+        config = json.load(f)
+
+    # Freeze command executed
+    if not os.path.isdir(f"target/{config['name']}"):
+        print("It seems that the `freeze` command wasn't executed.")
+        answer = ask.question("Do you want to do it now (y/n)?", "y")
+        print("")
+        if answer == "y":
+            freeze()
+        else:
+            sys.exit()
+
+    # Makensis exists
+    if not shutil.which("makensis"):
+        print("It seems that NSIS is not installed or set in the PATH.")
+        print("It can be found at this address: https://nsis.sourceforge.io/Download")
+        sys.exit()
+
+    # ShellExecAsUser exists
     if not os.path.exists(cst.path_dll_shellexecasuser):
         print("NSIS needs \"ShellExecAsUser\" in order to create the installer.")
         answer = ask.question("Do you want to download it (y/n)?", "y")
+        print("")
         if answer == "y":
             print("Downloading...", end=" ")
-            file = download.shell_exec_as_user()
+            download.shell_exec_as_user()
             print("Done")
         else:
-            print("You can find it at this address: https://nsis.sourceforge.io/ShellExecAsUser_plug-in")
+            print("It can be found at this address: https://nsis.sourceforge.io/ShellExecAsUser_plug-in")
+            sys.exit()
 
-    # os.chdir("installer")
-    # os.system("pyinstaller installer.spec")
-    else:
-        print("Ready to create the installer")
-
+    # Execute the makensis
+    os.chdir("installer")
+    print("~$ makensis installer.nsi")
+    os.system("makensis installer.nsi")
+    os.chdir("..")

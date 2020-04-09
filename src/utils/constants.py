@@ -12,3 +12,6 @@ with open(os.path.join(dir_home, "resources", "main.py.pattern")) as f:
 
 with open(os.path.join(dir_home, "resources", "spec.pattern")) as f:
     pattern_spec = f.read()
+
+with open(os.path.join(dir_home, "resources", "nsis.pattern")) as f:
+    pattern_nsis = f.read()
