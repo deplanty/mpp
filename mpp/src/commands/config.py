@@ -6,13 +6,18 @@ import sys
 from mpp.src.utils import ask, constants as cst, files
 
 
-def config(args=None):
+# TODO: What to do when args is no given?
+def config(args=None, parser=None):
     """
     Show or edit configuration parameters
 
     Args:
         args (argparse args): parameters from parser.parse_args()
     """
+
+    if not any([args.list, args.parameters]):
+        parser.print_help()
+        sys.exit()
 
     # Get project config file
     if not os.path.exists(".mpp_config"):
@@ -21,12 +26,12 @@ def config(args=None):
         mpp_config = json.load(f)
 
     # If there is no parameter
-    if not args.parameter:
+    if args.list:
         __show_config(mpp_config)
         sys.exit()
 
     # If there are parameters
-    for param in args.parameter:
+    for param in args.parameters:
         if param not in mpp_config:
             valid = [f"'{x}'" for x in mpp_config.keys()]
             valid = ", ".join(valid)
@@ -42,10 +47,13 @@ def config(args=None):
 def __show_config(mpp_config):
     """
     Shows the parameters from the configurtion file
+
+    Args:
+        mpp_config (dict): project parameters
     """
 
     values = [f" -→ {k} = {v}" for k, v in mpp_config.items()]
-    print("The list of parameters:", *values, sep="\n")
+    print(*values, sep="\n")
 
 
 def __process_parameters(args, mpp_config):
@@ -62,19 +70,19 @@ def __process_parameters(args, mpp_config):
 
     # Process each parameter
     answers = dict()
-    if "name" in args.parameter:
+    if "name" in args.parameters:
         answers["name"] = ask.question(
             "What is your project name?",
             default=mpp_config["name"],
             required=True
         )
-    if "author" in args.parameter:
+    if "author" in args.parameters:
         answers["author"] = ask.question(
             "What is your author name?",
             default=mpp_config["author"],
             required=True
         )
-    if "console" in args.parameter:
+    if "console" in args.parameters:
         answers["console"] = ask.question(
             "Do you want to display the console (y/n)?",
             default="y" if mpp_config["console"] else "n"

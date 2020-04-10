@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "mpp = mpp:main",
+            "mpp = mpp.main",
         ]
     },
     classifiers=[
