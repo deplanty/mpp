@@ -1,1 +1,1 @@
-print("'%(name)s' is ready to be used")
+print("This is your main file")

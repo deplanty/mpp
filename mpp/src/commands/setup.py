@@ -33,7 +33,6 @@ def setup(args=None):
 
     # Add icon
     shutil.copy(cst.path_ico_default, mpp_config["icon"])
-    print(f"The project's icon is stored at this address {mpp_config['icon']}")
 
     files.write_mpp_config(mpp_config)
 
@@ -42,3 +41,11 @@ def setup(args=None):
         f.write(cst.pattern_main_py % mpp_config)
 
     files.write_installer(mpp_config)
+
+    print("")
+    print(f"The project's icon is here: {mpp_config['icon']}.")
+    print("The `main.py` file can now be edited.")
+    print("")
+    print("Use `mpp config` to view your project settings.")
+    print("Use `mpp <command> -h` to display help for the command.")
+
