@@ -67,3 +67,6 @@ def config(args=None):
     # Rewrite the specs file
     with open(f"installer/installer.spec", "w") as f:
         f.write(cst.pattern_spec % answers)
+    # Rewrite the nsis file
+    with open(f"installer/installer.nsi", "w") as f:
+        f.write(cst.pattern_nsis % answers)
