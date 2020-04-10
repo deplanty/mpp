@@ -2,7 +2,7 @@ import json
 import os
 import shutil
 
-from mpp.src.utils import ask, constants as cst
+from mpp.src.utils import ask, constants as cst, files
 
 
 def setup(args=None):
@@ -13,18 +13,18 @@ def setup(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
-    # Get information to forecast user's answers
+    # Get information to forecast user's mpp_config
     current_dir = os.path.basename(os.getcwd())
     username = os.path.basename(os.path.expanduser("~"))
 
     # Ask questions
-    answers = dict()
-    answers["name"] = ask.question("What is your project name?", current_dir, required=True)
-    answers["author"] = ask.question("What is your author name?", username, required=True)
-    answers["console"] = ask.question("Do you want to display the console (y/n)?", "y")
-    answers["console"] = answers["console"].lower() == "y"
-    answers["icon"] = "resources/images/icon.ico"
-    answers["hidden-imports"] = list()
+    mpp_config = dict()
+    mpp_config["name"] = ask.question("What is your project name?", current_dir, required=True)
+    mpp_config["author"] = ask.question("What is your author name?", username, required=True)
+    mpp_config["console"] = ask.question("Do you want to display the console (y/n)?", "y")
+    mpp_config["console"] = mpp_config["console"].lower() == "y"
+    mpp_config["icon"] = "resources/images/icon.ico"
+    mpp_config["hidden-imports"] = list()
 
     # Create folders
     os.makedirs("installer", exist_ok=True)
@@ -32,18 +32,13 @@ def setup(args=None):
     os.makedirs("src", exist_ok=True)
 
     # Add icon
-    shutil.copy(cst.path_ico_default, answers["icon"])
-    print(f"The project's icon is stored at this address {answers['icon']}")
+    shutil.copy(cst.path_ico_default, mpp_config["icon"])
+    print(f"The project's icon is stored at this address {mpp_config['icon']}")
 
-    # Write the config file
-    with open(".mpp_config", "w") as f:
-        json.dump(answers, f, indent=4)
-    # Write the files
+    files.write_mpp_config(mpp_config)
+
+    # Write main file
     with open("main.py", "w") as f:
-        f.write(cst.pattern_main_py % answers)
-    # Write the specs
-    with open(f"installer/installer.spec", "w") as f:
-        f.write(cst.pattern_spec % answers)
-    # Write the nsis file
-    with open(f"installer/installer.nsi", "w") as f:
-        f.write(cst.pattern_nsis % answers)
+        f.write(cst.pattern_main_py % mpp_config)
+
+    files.write_installer(mpp_config)

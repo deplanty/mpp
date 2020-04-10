@@ -44,6 +44,7 @@ def installer(args=None):
             print("Downloading...", end=" ")
             download.shell_exec_as_user()
             print("Done")
+            print("")
         else:
             print("It can be found at this address: https://nsis.sourceforge.io/ShellExecAsUser_plug-in")
             sys.exit()
