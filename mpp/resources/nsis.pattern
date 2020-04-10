@@ -31,7 +31,7 @@ FunctionEnd
 ;General
 
 Name "%(name)s"
-OutFile "..\%(name)s_setup.exe"
+OutFile "..\target\%(name)s_setup.exe"
 
 ;--------------------------------
 ;Interface Settings
