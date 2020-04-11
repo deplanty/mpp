@@ -1,4 +1,5 @@
 import json
+import json
 import os
 import shutil
 import sys
@@ -12,6 +13,9 @@ def freeze(args=None):
     Args:
         args (argparse args): parameters from parser.parse_args()
     """
+
+    with open(".mpp_config") as f:
+        mpp_config = json.load(f)
 
     # PyInstaller exists
     if not shutil.which("pyinstaller"):
@@ -28,8 +32,10 @@ def freeze(args=None):
             sys.exit()
 
     # Execute PyInstaller
-    os.chdir("installer")
     print("~$ pyinstaller installer.spec")
+    os.chdir("installer")
     os.system("pyinstaller installer.spec")
-    print("")
     os.chdir("..")
+    print("")
+    print(f"Executable can be found here: target/{mpp_config['name']}/{mpp_config['name']}.exe")
+    print("")

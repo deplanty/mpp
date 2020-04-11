@@ -90,8 +90,9 @@ def __process_parameters(args, mpp_config):
         answers["console"] = answers["console"].lower() == "y"
 
     # Validate modifications
+    print("")
     is_ok = ask.question(
-        "\nAre you sure of your modifications (y/n)?",
+        "Are you sure of your modifications (y/n)?",
         required=True
     ).lower() == "y"
 

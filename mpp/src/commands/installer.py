@@ -17,10 +17,10 @@ def installer(args=None):
 
     # Load parameters file
     with open(".mpp_config") as f:
-        config = json.load(f)
+        mpp_config = json.load(f)
 
     # Freeze command executed
-    if not os.path.isdir(f"target/{config['name']}"):
+    if not os.path.isdir(f"target/{mpp_config['name']}"):
         print("It seems that the `freeze` command wasn't executed.")
         answer = ask.question("Do you want to do it now (y/n)?", "y")
         print("")
@@ -50,7 +50,10 @@ def installer(args=None):
             sys.exit()
 
     # Execute the makensis
-    os.chdir("installer")
     print("~$ makensis installer.nsi")
+    os.chdir("installer")
     os.system("makensis installer.nsi")
     os.chdir("..")
+    print("")
+    print(f"Installer can be found here: target/{mpp_config['name']}_setup.exe")
+    print("")

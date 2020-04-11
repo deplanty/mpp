@@ -46,6 +46,6 @@ def setup(args=None):
     print(f"The project's icon is here: {mpp_config['icon']}.")
     print("The `main.py` file can now be edited.")
     print("")
-    print("Use `mpp config` to view your project settings.")
-    print("Use `mpp <command> -h` to display help for the command.")
+    print("Use `mpp config --list` to show your project settings.")
+    print("Use `mpp <command> -h` to display the help for a command.")
 
