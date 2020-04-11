@@ -74,14 +74,17 @@ def __process_parameters(args, mpp_config):
     if "name" in args.parameters:
         answers["name"] = ask.question(
             "What is your project name?",
-            default=mpp_config["name"],
-            required=True
+            default=mpp_config["name"]
         )
     if "author" in args.parameters:
         answers["author"] = ask.question(
             "What is your author name?",
-            default=mpp_config["author"],
-            required=True
+            default=mpp_config["author"]
+        )
+    if "version" in args.parameters:
+        answers["version"] = ask.question(
+            "What is the new version?",
+            default=mpp_config["version"]
         )
     if "console" in args.parameters:
         answers["console"] = ask.question(
