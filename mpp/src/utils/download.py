@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 import tempfile
 import urllib.request
 import zipfile
@@ -35,10 +36,13 @@ def shell_exec_as_user():
     dl_path = os.path.join(dir_path, zipname)
 
     # Download the file and unzip it
-    with urllib.request.urlopen(url) as response:
-        with open(dl_path, "wb") as output:
-            shutil.copyfileobj(response, output)
+    try:
+        with urllib.request.urlopen(url) as response:
+            with open(dl_path, "wb") as output:
+                shutil.copyfileobj(response, output)
         with zipfile.ZipFile(dl_path) as zf:
             zf.extract(dllname, dl_output)
+    except urllib.error.URLError as err:
+        sys.exit("No internet connection.")
 
     return cst.path_dll_shellexecasuser
