@@ -41,9 +41,7 @@ def installer(args=None):
         answer = ask.question("Do you want to download it (y/n)?", "y")
         print("")
         if answer == "y":
-            print("Downloading...", end=" ")
             download.shell_exec_as_user()
-            print("Done")
             print("")
         else:
             print("It can be found at this address: https://nsis.sourceforge.io/ShellExecAsUser_plug-in")
@@ -56,4 +54,3 @@ def installer(args=None):
     os.chdir("..")
     print("")
     print(f"Installer can be found here: target/{mpp_config['name']}_setup.exe")
-    print("")
