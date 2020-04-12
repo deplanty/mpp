@@ -24,7 +24,7 @@ def main():
     )
     config_parser.add_argument("parameters", metavar="parameter", nargs="*", help="parameters to edit")
     config_parser.add_argument("--list", action="store_true", help="show project parameters")
-    config_parser.set_defaults(func=lambda args: config(args, parser))
+    config_parser.set_defaults(func=config)
 
     freeze_parser = subparsers.add_parser(
         "freeze",
