@@ -51,4 +51,3 @@ def setup(args=None):
     print("Use `mpp --help` to display all possible commands")
     print("Use `mpp <command> -h` to display the help for a command.")
     print("Use `mpp config --list` to show your project settings.")
-

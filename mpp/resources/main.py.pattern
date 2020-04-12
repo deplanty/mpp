@@ -1,1 +1,6 @@
-print("This is your main file")
+import json
+
+with open(".mpp_config") as f:
+    mpp_config = json.load(f)
+
+print("Project {name} (version {version}) is ready.".format(**mpp_config))

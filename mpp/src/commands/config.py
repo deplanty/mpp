@@ -156,7 +156,7 @@ def __process_hidden_imports(mpp_config):
         elif answer.startswith("-"):
             try:
                 imports.remove(answer[1:])
-            except ValueError as err:
+            except ValueError:
                 print(f"`{answer[1:]}` is not part of the hidden imports.")
         # Add one package
         elif answer.startswith("+"):
