@@ -6,6 +6,9 @@ import sys
 from mpp.src.commands import setup, config, freeze, installer
 
 
+__version__ = "0.0.1"
+
+
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
