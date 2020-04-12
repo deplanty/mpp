@@ -6,12 +6,14 @@ import sys
 from mpp.src.commands import setup, config, freeze, installer
 
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
+
+    parser.add_argument("--version", action="store_true", help="show version and exit")
 
     setup_parser = subparsers.add_parser(
         "setup",
@@ -45,7 +47,10 @@ def main():
 
     args = parser.parse_args()
 
-    if not hasattr(args, "func"):
+    if args.version == True:
+        print(f"My Python Project {__version__}")
+        sys.exit(0)
+    elif not hasattr(args, "func"):
         parser.print_help()
         sys.exit(0)
 
