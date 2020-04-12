@@ -39,4 +39,3 @@ def freeze(args=None):
     os.chdir("..")
     print("")
     print(f"Executable can be found here: target/{mpp_config['name']}/{mpp_config['name']}.exe")
-    print("")
