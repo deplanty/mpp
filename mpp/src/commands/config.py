@@ -7,7 +7,6 @@ import textwrap
 from mpp.src.utils import ask, constants as cst, files
 
 
-# TODO: What to do when args is no given?
 def config(args=None):
     """
     Show or edit configuration parameters
@@ -18,7 +17,7 @@ def config(args=None):
 
     if not any([args.list, args.parameters]):
         print("This command needs parameters.")
-        print("Please, use `mpp config --help` to show the help.")
+        print("Use `mpp config --help` to show the help.")
         sys.exit()
 
     # Get project config file

@@ -6,6 +6,7 @@ import sys
 
 from mpp.src.utils import ask
 
+
 def freeze(args=None):
     """
     Freezes the project to create an executable
