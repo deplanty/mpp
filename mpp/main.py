@@ -3,17 +3,17 @@
 import argparse
 import sys
 
-from mpp.src.commands import setup, config, freeze, installer
+from mpp.src.commands import setup, config, freeze, installer, version
 
 
-__version__ = "0.0.3"
+__version__ = "0.1.1"
 
 
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 
-    parser.add_argument("--version", action="store_true", help="show version and exit")
+    parser.add_argument("--version", dest="show_version", action="store_true", help="show version and exit")
 
     setup_parser = subparsers.add_parser(
         "setup",
@@ -45,9 +45,17 @@ def main():
     )
     installer_parser.set_defaults(func=installer)
 
+    version_parser = subparsers.add_parser(
+        "version",
+        description="Show or increment version number",
+        help="Fast increment version number"
+    )
+    version_parser.set_defaults(func=version)
+    version_parser.add_argument("add", nargs="?", help="increment version number (+, ++, ...)")
+
     args = parser.parse_args()
 
-    if args.version == True:
+    if args.show_version == True:
         print(f"My Python Project {__version__}")
         sys.exit(0)
     elif not hasattr(args, "func"):

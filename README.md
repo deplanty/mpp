@@ -17,6 +17,7 @@ $ pip install mpp
 ## Usage
 
 ### Start a project easily
+
 ```
 $ mpp setup
 What is your project name? [default] Project
@@ -33,6 +34,7 @@ Use `mpp config --list` to show your project settings.
 ```
 
 #### Environment
+
 ```
 default/
     installer/
@@ -45,8 +47,6 @@ default/
     main.py
 ```
 
-#### Description
-
 - **installer/**: contains the files needed to freeze and create an installer;
 - **resources/**: contains your project's files;
 - **src/**: contains the sources of your project;
@@ -55,6 +55,7 @@ default/
 - **main.py**: main python file.
 
 ### Show your configuration
+
 ```
 $ mpp config --list
  -→ name = Project
@@ -66,6 +67,7 @@ $ mpp config --list
 ```
 
 ### Edit your configuration
+
 ```
 $ mpp config author version
 What is your author name? [Name] John
@@ -74,9 +76,35 @@ What is the new version? [0.0.0] 0.0.1
 Are you sure of your modifications (y/n)? y
 ```
 
+### Process your project version
+
+Show your project version.
+
+```
+$ mpp version
+Project 0.0.0
+```
+
+Increment the version
+
+```
+$ mpp version +
+Project 0.0.1
+
+$ mpp version ++
+Project 0.1.0
+
+$ mpp version +
+Project 0.1.1
+
+$ mpp version +++
+Project 1.0.0
+```
+
 ### Freeze your project with [PyInstaller](https://www.pyinstaller.org/)
 
 If `PyInstaller` is not installed, `mpp` asks if it can do it for you.
+
 ```
 $ mpp freeze
 It seems that PyInstaller is not installed.
@@ -93,6 +121,7 @@ Executable can be found here: target/Project/Project.exe
 ### Create an installer for your project with [NSIS](https://nsis.sourceforge.io/Main_Page)
 
 If `ShellExecAsUSer.dll` is not in the `installer` folder, `mpp` asks if it can download it for you
+
 ```
 $ mpp installer
 NSIS needs "ShellExecAsUser" in order to create the installer.
