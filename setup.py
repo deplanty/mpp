@@ -10,7 +10,7 @@ setup(
     name="mpp",
     version=mpp.main.__version__,
     author="deplanty",
-    description="My Python Project: a command-line tool to create a Pythpn project",
+    description="My Python Project: a command-line tool to create a Python project",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/deplanty/mpp",

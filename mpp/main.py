@@ -9,7 +9,7 @@ from mpp.src.commands import setup, config, freeze, installer, version
 __version__ = "0.1.1"
 
 
-def main():
+def main()
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 

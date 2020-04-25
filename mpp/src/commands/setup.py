@@ -33,13 +33,14 @@ def setup(args=None):
     os.makedirs("src", exist_ok=True)
 
     # Add icon
-    shutil.copy(cst.path_ico_default, mpp_config["icon"])
-
+    if not os.path.exists(mpp_config["icon"]):
+        shutil.copy(cst.path_ico_default, mpp_config["icon"])
+    # Write configuration file
     files.write_mpp_config(mpp_config)
-
     # Write main file
-    with open("main.py", "w") as f:
-        f.write(cst.pattern_main_py % mpp_config)
+    if not os.path.exists("main.py"):
+        with open("main.py", "w") as f:
+            f.write(cst.pattern_main_py % mpp_config)
 
     files.write_installer(mpp_config)
 
