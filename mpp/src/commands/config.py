@@ -22,10 +22,7 @@ def config(args=None):
         sys.exit()
 
     # Get project config file
-    if not os.path.exists(".mpp_config"):
-        sys.exit("Please setup your environment by using the 'setup' command")
-    with open(".mpp_config") as f:
-        mpp_config = json.load(f)
+    mpp_config = files.get_mpp_config()
 
     # If there is list parameter
     if args.list:

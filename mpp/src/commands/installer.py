@@ -15,9 +15,8 @@ def installer(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
-    # Load parameters file
-    with open(".mpp_config") as f:
-        mpp_config = json.load(f)
+    # Get project config file
+    mpp_config = files.get_mpp_config()
 
     # Freeze command executed
     if not os.path.isdir(f"target/{mpp_config['name']}"):

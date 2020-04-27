@@ -1,4 +1,6 @@
 import json
+import os
+import sys
 
 from mpp.src.utils import constants as cst
 
@@ -44,3 +46,18 @@ def write_mpp_config(mpp_config):
     # Write the config file
     with open(".mpp_config", "w") as f:
         json.dump(mpp_config, f, indent=4)
+
+
+def get_mpp_config():
+    """
+    Returns the project's configuration file
+
+    Returns:
+        dict: project parameters
+    """
+
+    try:
+        with open(".mpp_config") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        sys.exit("Please setup your environment with `mpp setup`.")

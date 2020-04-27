@@ -1,4 +1,3 @@
-import json
 import sys
 
 from mpp.src.utils import files
@@ -12,8 +11,8 @@ def version(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
-    with open(".mpp_config") as f:
-        mpp_config = json.load(f)
+    # Get project config file
+    mpp_config = files.get_mpp_config()
 
     # Show current project version
     if args.add is None:

@@ -15,8 +15,8 @@ def freeze(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
-    with open(".mpp_config") as f:
-        mpp_config = json.load(f)
+    # Get project config file
+    mpp_config = files.get_mpp_config()
 
     # PyInstaller exists
     if not shutil.which("pyinstaller"):
