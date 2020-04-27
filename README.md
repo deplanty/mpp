@@ -6,7 +6,7 @@
 
 A simple tool to create a project with Python, an executable and an installer.
 
-For now, it's only for Windows, but future versions will make it independent of the operating system.
+It's only for Windows, but future versions will make it independent of the operating system.
 
 ## Installation
 
@@ -18,7 +18,7 @@ $ pip install mpp
 
 ## Usage
 
-Let's create a project together.
+Let's create a project together:
 
 ```
 $ mkdir mpp_tuto
@@ -27,7 +27,7 @@ $ cd mpp_tuto
 
 ### Setup your project easily
 
-Just answer the questions, where the default value is between square brackets.
+Just answer the questions, where the default values are between square brackets:
 
 ```
 $ mpp setup
@@ -91,14 +91,14 @@ Are you sure of your modifications (y/n)? y
 
 ### Process your project version
 
-Show your project version.
+Show your project version:
 
 ```
 $ mpp version
 Project 0.0.0
 ```
 
-Increment the version
+Increment the version:
 
 ```
 $ mpp version +
@@ -116,7 +116,7 @@ Project 1.0.0
 
 ### Freeze your project with [PyInstaller](https://www.pyinstaller.org/)
 
-If `PyInstaller` is not installed, `mpp` asks if it can do it for you.
+If `PyInstaller` is not installed, `mpp` asks if it can do it for you:
 
 ```
 $ mpp freeze
@@ -133,7 +133,7 @@ Executable can be found here: target/Project/Project.exe
 
 ### Create an installer for your project with [NSIS](https://nsis.sourceforge.io/Main_Page)
 
-If `ShellExecAsUSer.dll` is not in the `installer` folder, `mpp` asks if it can download it for you
+If `ShellExecAsUSer.dll` is not in the `installer` folder, `mpp` asks if it can download it for you:
 
 ```
 $ mpp installer
