@@ -69,26 +69,29 @@ def __process_parameters(args, mpp_config):
         dict: user's answers
     """
 
+    with open(cst.path_questions) as f:
+        questions = json.load(f)
+
     # Process each parameter
     answers = dict()
     if "name" in args.parameters:
         answers["name"] = ask.question(
-            "What is your project name?",
+            questions["name"],
             default=mpp_config["name"]
         )
     if "author" in args.parameters:
         answers["author"] = ask.question(
-            "What is your author name?",
+            questions["author"],
             default=mpp_config["author"]
         )
     if "version" in args.parameters:
         answers["version"] = ask.question(
-            "What is the new version?",
+            questions["version"],
             default=mpp_config["version"]
         )
     if "console" in args.parameters:
         answers["console"] = ask.question(
-            "Do you want to display the console (y/n)?",
+            questions["console"],
             default="y" if mpp_config["console"] else "n"
         )
         answers["console"] = answers["console"].lower() == "y"
@@ -98,7 +101,7 @@ def __process_parameters(args, mpp_config):
     # Validate modifications
     print("")
     is_ok = ask.question(
-        "Are you sure of your modifications (y/n)?",
+        questions["confirm"],
         required=True
     ).lower() == "y"
 

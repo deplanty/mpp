@@ -35,11 +35,11 @@ What is your project name? [mpp_tuto] MPP Tuto
 What is your author name? [username] Name
 Do you want to display the console (y/n)? [y]
 
-The project version is 0.0.0
-The project's icon is here: resources/images/icon.ico.
+The project's version is 0.0.0.
+The project's icon can be found here: resources/images/icon.ico.
 The `main.py` file can now be edited.
 
-Use `mpp --help` to display all possible commands
+Use `mpp --help` to display all possible commands.
 Use `mpp <command> -h` to display the help for a command.
 Use `mpp config --list` to show your project settings.
 ```

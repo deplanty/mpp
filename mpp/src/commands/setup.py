@@ -13,17 +13,19 @@ def setup(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
+    with open(cst.path_questions) as f:
+        questions = json.load(f)
+
     # Get information to forecast user's mpp_config
     current_dir = os.path.basename(os.getcwd())
     username = os.path.basename(os.path.expanduser("~"))
 
     # Ask questions
     mpp_config = dict()
-    mpp_config["name"] = ask.question("What is your project name?", current_dir, required=True)
-    mpp_config["author"] = ask.question("What is your author name?", username, required=True)
+    mpp_config["name"] = ask.question(questions["name"], current_dir, required=True)
+    mpp_config["author"] = ask.question(questions["author"], username, required=True)
     mpp_config["version"] = "0.0.0"
-    mpp_config["console"] = ask.question("Do you want to display the console (y/n)?", "y")
-    mpp_config["console"] = mpp_config["console"].lower() == "y"
+    mpp_config["console"] = "y"
     mpp_config["icon"] = "resources/images/icon.ico"
     mpp_config["hidden-imports"] = list()
 
@@ -45,10 +47,10 @@ def setup(args=None):
     files.write_installer(mpp_config)
 
     print("")
-    print(f"The project version is {mpp_config['version']}")
-    print(f"The project's icon is here: {mpp_config['icon']}.")
+    print(f"The project's version is {mpp_config['version']}.")
+    print(f"The project's icon can be found here: {mpp_config['icon']}.")
     print("The `main.py` file can now be edited.")
     print("")
-    print("Use `mpp --help` to display all possible commands")
+    print("Use `mpp --help` to display all possible commands.")
     print("Use `mpp <command> -h` to display the help for a command.")
     print("Use `mpp config --list` to show your project settings.")
