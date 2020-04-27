@@ -33,7 +33,6 @@ Just answer the questions, where the default value is between square brackets.
 $ mpp setup
 What is your project name? [mpp_tuto] MPP Tuto
 What is your author name? [username] Name
-Do you want to display the console (y/n)? [y]
 
 The project's version is 0.0.0.
 The project's icon can be found here: resources/images/icon.ico.
