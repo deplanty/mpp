@@ -30,7 +30,6 @@ def setup(args=None):
     mpp_config["hidden-imports"] = list()
 
     # Create folders
-    os.makedirs("installer", exist_ok=True)
     os.makedirs("resources/images", exist_ok=True)
     os.makedirs("src", exist_ok=True)
 
@@ -43,8 +42,6 @@ def setup(args=None):
     if not os.path.exists("main.py"):
         with open("main.py", "w") as f:
             f.write(cst.pattern_main_py % mpp_config)
-
-    files.write_installer(mpp_config)
 
     print("")
     print(f"The project's version is {mpp_config['version']}.")

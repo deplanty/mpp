@@ -3,7 +3,7 @@ import json
 from mpp.src.utils import constants as cst
 
 
-def write_installer(mpp_config):
+def write_spec(mpp_config):
     """
     Writes the PyInstaller spec file and the NSIS file
 
@@ -11,13 +11,26 @@ def write_installer(mpp_config):
         mpp_config (dict): project parameters
     """
 
-    # Rewrite the specs file
+    os.makedirs("installer", exist_ok=True)
+
+    # Write the specs file
     with open(f"installer/installer.spec", "w") as f:
         f.write(cst.pattern_spec % mpp_config)
-    # Rewrite the nsis file
+
+
+def write_nsis(mpp_config):
+    """
+    Writes the NSIS installer file
+
+    Args:
+        mpp_config (dict): project parameters
+    """
+
+    os.makedirs("installer", exist_ok=True)
+
+    # Write the nsis file
     with open(f"installer/installer.nsi", "w") as f:
         f.write(cst.pattern_nsis % mpp_config)
-
 
 
 def write_mpp_config(mpp_config):

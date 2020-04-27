@@ -15,6 +15,7 @@ def config(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
+    # If there is no parameter
     if not any([args.list, args.parameters]):
         print("This command needs parameters.")
         print("Use `mpp config --help` to show the help.")
@@ -26,7 +27,7 @@ def config(args=None):
     with open(".mpp_config") as f:
         mpp_config = json.load(f)
 
-    # If there is no parameter
+    # If there is list parameter
     if args.list:
         __show_config(mpp_config)
         sys.exit()
@@ -42,7 +43,6 @@ def config(args=None):
     if new_config:
         mpp_config.update(**new_config)
         files.write_mpp_config(mpp_config)
-        files.write_installer(mpp_config)
 
 
 def __show_config(mpp_config):

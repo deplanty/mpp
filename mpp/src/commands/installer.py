@@ -4,7 +4,7 @@ import shutil
 import sys
 
 from mpp.src.commands import freeze
-from mpp.src.utils import ask, download, constants as cst
+from mpp.src.utils import ask, download, files, constants as cst
 
 
 def installer(args=None):
@@ -46,6 +46,11 @@ def installer(args=None):
         else:
             print("It can be found at this address: https://nsis.sourceforge.io/ShellExecAsUser_plug-in")
             sys.exit()
+
+    # Write spec file
+    print("Generate NSIS spec file.")
+    files.write_nsis(mpp_config)
+    print("")
 
     # Execute the makensis
     print("~$ makensis installer.nsi")

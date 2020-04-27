@@ -4,7 +4,7 @@ import os
 import shutil
 import sys
 
-from mpp.src.utils import ask
+from mpp.src.utils import ask, files
 
 
 def freeze(args=None):
@@ -31,6 +31,11 @@ def freeze(args=None):
             print("")
         else:
             sys.exit()
+
+    # Write spec file
+    print("Generate PyInstaller spec file.")
+    files.write_spec(mpp_config)
+    print("")
 
     # Execute PyInstaller
     print("~$ pyinstaller installer.spec")
