@@ -3,24 +3,35 @@
 # My Python Project
 
 ## Description
-A simple tool to create a project with Python, an executable and an installer. It was inspired from [fbs](https://github.com/mherrmann/fbs).
+
+A simple tool to create a project with Python, an executable and an installer.
 
 For now, it's only for Windows, but future versions will make it independent of the operating system.
 
 ## Installation
 
 `mpp` can be installed using the pip package manager:
+
 ```
 $ pip install mpp
 ```
 
 ## Usage
 
-### Start a project easily
+Let's create a project together.
+
+```
+$ mkdir mpp_tuto
+$ cd mpp_tuto
+```
+
+### Setup your project easily
+
+Just answer the questions, where the default value is between square brackets.
 
 ```
 $ mpp setup
-What is your project name? [default] Project
+What is your project name? [mpp_tuto] MPP Tuto
 What is your author name? [username] Name
 Do you want to display the console (y/n)? [y]
 
@@ -35,8 +46,10 @@ Use `mpp config --list` to show your project settings.
 
 #### Environment
 
+After setuping your environment, some folders and files are created:
+
 ```
-default/
+mpp_tuto/
     installer/
     resources/
         images/
@@ -50,7 +63,7 @@ default/
 - **installer/**: contains the files needed to freeze and create an installer;
 - **resources/**: contains your project's files;
 - **src/**: contains the sources of your project;
-- **target**: contains the created executable and installer;
+- **target/**: contains the created executable and installer;
 - **.mpp_config**: stores yout project's settings;
 - **main.py**: main python file.
 
@@ -58,7 +71,7 @@ default/
 
 ```
 $ mpp config --list
- -→ name = Project
+ -→ name = MPP Tuto
  -→ author = Name
  -→ version = 0.0.0
  -→ console = True
@@ -132,3 +145,7 @@ Downloading... Done
 
 Installer can be found here: target/Project_setup.exe
 ```
+
+## Credits
+
+This project was originally inspired from [fbs](https://github.com/mherrmann/fbs).
