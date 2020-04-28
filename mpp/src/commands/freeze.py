@@ -9,7 +9,7 @@ from mpp.src.utils import ask, files
 
 def freeze(args=None):
     """
-    Freezes the project to create an executable
+    Freezes the project to create an executable.
 
     Args:
         args (argparse args): parameters from parser.parse_args()
@@ -17,6 +17,13 @@ def freeze(args=None):
 
     # Get project config file
     mpp_config = files.get_mpp_config()
+
+    # Process --spec parameter
+    if hasattr(args, "spec") and args.spec is True:
+        # Write spec file
+        files.write_spec(mpp_config)
+        print("PyInstaller spec file can be found here: installer/installer.spec.")
+        sys.exit()
 
     # PyInstaller exists
     if not shutil.which("pyinstaller"):
