@@ -25,8 +25,9 @@ def setup(args=None):
     mpp_config["name"] = ask.question(questions["name"], current_dir, required=True)
     mpp_config["author"] = ask.question(questions["author"], username, required=True)
     mpp_config["version"] = "0.0.0"
-    mpp_config["console"] = "y"
     mpp_config["icon"] = "resources/images/icon.ico"
+    mpp_config["resources"] = ["resources", ".mpp_config"]
+    mpp_config["console"] = "y"
     mpp_config["hidden-imports"] = list()
 
     # Create folders

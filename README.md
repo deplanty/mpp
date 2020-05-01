@@ -73,8 +73,9 @@ $ mpp config --list
  -→ name = MPP Tuto
  -→ author = Name
  -→ version = 0.0.0
- -→ console = True
+ -→ resources = ['resources', '.mpp_config']
  -→ icon = resources/images/icon.ico
+ -→ console = True
  -→ hidden-imports = []
 ```
 

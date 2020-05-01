@@ -86,6 +86,8 @@ def __process_parameters(args, mpp_config):
             questions["version"],
             default=mpp_config["version"]
         )
+    if "resources" in args.parameters:
+        answers["resources"] = __process_resources(mpp_config)
     if "console" in args.parameters:
         answers["console"] = ask.question(
             questions["console"],
@@ -106,6 +108,66 @@ def __process_parameters(args, mpp_config):
         answers.clear()
 
     return answers
+
+
+def __process_resources(mpp_config):
+    """
+    Processes the `resources` parameter
+
+    Args:
+        mpp_config (dict): project parameters
+
+    Returns:
+        list: user's resources
+    """
+
+    resources = mpp_config["resources"][:]
+    help_msg = textwrap.dedent("""\
+    Use `-<file>` to remove a file or `+<file>` to add it.
+    Use `list` to display the current resources.
+    Use `clear` to remove all the resources.
+    Use `help` to show this message.
+    Use `q` to exit.""")
+
+    print("List of current resources:")
+    print(f"[{', '.join(resources)}]")
+    print("")
+    print(help_msg)
+
+    while True:
+        answer = input("> ")
+
+        # Verify input
+        if len(answer.split()) > 1:
+            print("White spaces are not allowed.")
+            continue
+
+        # Exit
+        if answer == "q":
+            break
+        # Show help
+        elif answer == "help":
+            print(help_msg)
+        # Remove all
+        elif answer == "clear":
+            resources.clear()
+        # Display list of resources
+        elif answer == "list":
+            print(f"[{', '.join(resources)}]")
+        # Remove one package
+        elif answer.startswith("-"):
+            try:
+                resources.remove(answer[1:])
+            except ValueError:
+                print(f"`{answer[1:]}` is not part of the resources.")
+        # Add one package
+        elif answer.startswith("+"):
+            resources.append(answer[1:])
+        # Something else
+        else:
+            print(f"`{answer}` is not a valid entry.")
+
+    return sorted(set(resources))
 
 
 def __process_hidden_imports(mpp_config):
@@ -163,6 +225,6 @@ def __process_hidden_imports(mpp_config):
             imports.append(answer[1:])
         # Something else
         else:
-            print(f"`{answer}` is not a valid entry")
+            print(f"`{answer}` is not a valid entry.")
 
     return sorted(set(imports))

@@ -1,5 +1,6 @@
 # -*- mode: python -*-
 
+import json
 import os
 import shutil
 
@@ -15,11 +16,27 @@ PyInstaller.config.CONF["noconfirm"] = True
 # Specs
 block_cipher = None
 
+# Add user resources
+with open("../.mpp_config") as fid:
+    mpp_config = json.load(fid)
+
+added_files = list()
+for resource in mpp_config["resources"]:
+    resource_bis = os.path.join("..", resource)
+    print(resource, resource_bis)
+    if os.path.isdir(resource_bis):
+        added_files += [(resource_bis, resource)]
+    else:
+        dest = os.path.dirname(resource)
+        dest = dest if dest != "" else "."
+        added_files += [(resource_bis, dest)]
+
+
 a = Analysis(
-    ['../main.py'],
-    pathex=['./'],
+    ["../main.py"],
+    pathex=["./"],
     binaries=[],
-    datas=[],
+    datas=added_files,
     hiddenimports=%(hidden-imports)s,
     hookspath=[],
     runtime_hooks=[],
@@ -28,7 +45,6 @@ a = Analysis(
     win_private_assemblies=False,
     cipher=block_cipher
 )
-a.datas += Tree("../resources", prefix="resources")
 
 pyz = PYZ(
     a.pure,
