@@ -36,6 +36,7 @@ def main():
         description="Create an executable using PyInstaller",
         help="create an executable using PyInstaller"
     )
+    freeze_parser.add_argument("--spec", action="store_true", help="only generate the PyInstaller spec file")
     freeze_parser.set_defaults(func=freeze)
 
     installer_parser = subparsers.add_parser(
@@ -43,6 +44,7 @@ def main():
         description="Create an installer with NSIS",
         help="create an installer with NSIS"
     )
+    installer_parser.add_argument("--spec", action="store_true", help="only generate the NSIS spec file")
     installer_parser.set_defaults(func=installer)
 
     version_parser = subparsers.add_parser(

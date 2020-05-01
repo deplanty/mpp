@@ -18,6 +18,13 @@ def installer(args=None):
     # Get project config file
     mpp_config = files.get_mpp_config()
 
+    # Process --spec parameter
+    if hasattr(args, "spec") and args.spec is True:
+        # Write spec file
+        files.write_nsis(mpp_config)
+        print("NSIS spec file can be found here: installer/installer.nsi.")
+        sys.exit()
+
     # Freeze command executed
     if not os.path.isdir(f"target/{mpp_config['name']}"):
         print("It seems that the `freeze` command wasn't executed.")

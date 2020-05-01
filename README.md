@@ -49,22 +49,29 @@ After setuping your environment, some folders and files are created:
 
 ```
 mpp_tuto/
-    installer/
     resources/
         images/
             icon.ico
     src/
-    target/
     .mpp_config
     main.py
 ```
 
-- **installer/**: contains the files needed to freeze and create an installer;
 - **resources/**: contains your project's files;
 - **src/**: contains the sources of your project;
-- **target/**: contains the created executable and installer;
 - **.mpp_config**: stores yout project's settings;
 - **main.py**: main python file.
+
+`mpp` will create 2 more folders after freezing and generating an installer:
+
+```
+mpp_tuto/
+    installer/
+    target/
+```
+
+- **installer/**: contains the specification files needed to freeze and generate an installer;
+- **target/**: contains the created executable and installer;
 
 ### Show your configuration
 
@@ -131,6 +138,12 @@ Do you want to install it now (y/n)? [y]
 Executable can be found here: target/Project/Project.exe
 ```
 
+If you want to generate only the specification file:
+
+```
+$ mpp freeze --spec
+```
+
 ### Create an installer for your project with [NSIS](https://nsis.sourceforge.io/Main_Page)
 
 If `ShellExecAsUSer.dll` is not in the `installer` folder, `mpp` asks if it can download it for you:
@@ -144,6 +157,12 @@ Downloading... Done
 [NSIS output]
 
 Installer can be found here: target/Project_setup.exe
+```
+
+If you want to generate only the specification file:
+
+```
+$ mpp installer --spec
 ```
 
 ## Credits
