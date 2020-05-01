@@ -27,7 +27,7 @@ def setup(args=None):
     mpp_config["version"] = "0.0.0"
     mpp_config["icon"] = "resources/images/icon.ico"
     mpp_config["resources"] = ["resources", ".mpp_config"]
-    mpp_config["console"] = "y"
+    mpp_config["console"] = True
     mpp_config["hidden-imports"] = list()
 
     # Create folders
