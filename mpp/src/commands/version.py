@@ -1,6 +1,6 @@
 import sys
 
-from mpp.src.utils import files
+from mpp.src.utils import config_file
 
 
 def version(args=None):
@@ -12,7 +12,7 @@ def version(args=None):
     """
 
     # Get project config file
-    mpp_config = files.get_mpp_config()
+    mpp_config = config_file.read()
 
     # Show current project version
     if args.add is None:
@@ -39,5 +39,5 @@ def version(args=None):
     # Write config
     ver = ".".join([str(v) for v in ver])
     mpp_config["version"] = ver
-    files.write_mpp_config(mpp_config)
+    config_file.write(mpp_config)
     print(mpp_config["name"], ver)

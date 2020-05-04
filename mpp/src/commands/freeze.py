@@ -4,7 +4,7 @@ import os
 import shutil
 import sys
 
-from mpp.src.utils import ask, files
+from mpp.src.utils import ask, config_file, files
 
 
 def freeze(args=None):
@@ -16,7 +16,7 @@ def freeze(args=None):
     """
 
     # Get project config file
-    mpp_config = files.get_mpp_config()
+    mpp_config = config_file.read()
 
     # Process --spec parameter
     if hasattr(args, "spec") and args.spec is True:

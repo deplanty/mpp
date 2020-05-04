@@ -4,7 +4,7 @@ import shutil
 import sys
 
 from mpp.src.commands import freeze
-from mpp.src.utils import ask, download, files, constants as cst
+from mpp.src.utils import ask, config_file, download, files, constants as cst
 
 
 def installer(args=None):
@@ -16,7 +16,7 @@ def installer(args=None):
     """
 
     # Get project config file
-    mpp_config = files.get_mpp_config()
+    mpp_config = config_file.read()
 
     # Process --spec parameter
     if hasattr(args, "spec") and args.spec is True:
