@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import sys
 
 from mpp.src.utils import ask, constants as cst, files
 
@@ -13,22 +14,17 @@ def setup(args=None):
         args (argparse args): parameters from parser.parse_args()
     """
 
-    with open(cst.path_questions) as f:
-        questions = json.load(f)
-
-    # Get information to forecast user's mpp_config
-    current_dir = os.path.basename(os.getcwd())
-    username = os.path.basename(os.path.expanduser("~"))
+    if args.update:
+        # Get project config file
+        mpp_config = files.get_mpp_config()
+        # Update project config
+        mpp_config = __update(mpp_config)
+        # Write update
+        files.write_mpp_config(mpp_config)
+        sys.exit("Update done.")
 
     # Ask questions
-    mpp_config = dict()
-    mpp_config["name"] = ask.question(questions["name"], current_dir, required=True)
-    mpp_config["author"] = ask.question(questions["author"], username, required=True)
-    mpp_config["version"] = "0.0.0"
-    mpp_config["icon"] = "resources/images/icon.ico"
-    mpp_config["resources"] = ["resources", ".mpp_config"]
-    mpp_config["console"] = True
-    mpp_config["hidden-imports"] = list()
+    mpp_config = __update(dict())
 
     # Create folders
     os.makedirs("resources/images", exist_ok=True)
@@ -52,3 +48,58 @@ def setup(args=None):
     print("Use `mpp --help` to display all possible commands.")
     print("Use `mpp <command> -h` to display the help for a command.")
     print("Use `mpp config --list` to show your project settings.")
+
+
+def __update(mpp_config):
+    """
+    Update mpp_config file with current version parameters.
+
+    Args:
+        mpp_config (dict): project parameters
+
+    Returns:
+        dict: updated project parameters
+    """
+
+    with open(cst.path_questions) as f:
+        questions = json.load(f)
+    new_mpp_config = dict()
+
+    try:
+        new_mpp_config["name"] = mpp_config["name"]
+    except:
+        current_dir = os.path.basename(os.getcwd())
+        new_mpp_config["name"] = ask.question(questions["name"], current_dir, required=True)
+
+    try:
+        new_mpp_config["author"] = mpp_config["author"]
+    except:
+        username = os.path.basename(os.path.expanduser("~"))
+        new_mpp_config["author"] = ask.question(questions["author"], username, required=True)
+
+    try:
+        new_mpp_config["version"] = mpp_config["version"]
+    except:
+        new_mpp_config["version"] = "0.0.0"
+
+    try:
+        new_mpp_config["icon"] = mpp_config["icon"]
+    except:
+        new_mpp_config["icon"] = "resources/images/icon.ico"
+
+    try:
+        new_mpp_config["resources"] = mpp_config["resources"]
+    except:
+        new_mpp_config["resources"] = ["resources", ".mpp_config"]
+
+    try:
+        new_mpp_config["console"] = mpp_config["console"]
+    except:
+        new_mpp_config["console"] = True
+
+    try:
+        new_mpp_config["hidden-imports"] = mpp_config["hidden-imports"]
+    except:
+        new_mpp_config["hidden-imports"] = list()
+
+    return new_mpp_config

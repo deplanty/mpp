@@ -20,6 +20,7 @@ def main():
         description="Ask some questions to setup the project",
         help="ask some questions to setup the project"
     )
+    setup_parser.add_argument("--update", action="store_true", help="update configuration with the new mpp version")
     setup_parser.set_defaults(func=setup)
 
     config_parser = subparsers.add_parser(
