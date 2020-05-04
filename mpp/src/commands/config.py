@@ -4,7 +4,7 @@ import shutil
 import sys
 import textwrap
 
-from mpp.src.utils import ask, constants as cst, files
+from mpp.src.utils import ask, config_file, constants as cst
 
 
 def config(args=None):
@@ -16,18 +16,24 @@ def config(args=None):
     """
 
     # If there is no parameter
-    if not any([args.list, args.parameters]):
+    if not any([args.parameters, args.list, args.update]):
         print("This command needs parameters.")
         print("Use `mpp config --help` to show the help.")
         sys.exit()
 
     # Get project config file
-    mpp_config = files.get_mpp_config()
+    mpp_config = config_file.read()
 
     # If there is list parameter
     if args.list:
         __show_config(mpp_config)
         sys.exit()
+
+    # If there is update parameter
+    if args.update:
+        # Update project config
+        config_file.setup(from_=mpp_config)
+        sys.exit("Update done.")
 
     # If there are parameters
     for param in args.parameters:
@@ -39,7 +45,7 @@ def config(args=None):
     new_config = __process_parameters(args, mpp_config)
     if new_config:
         mpp_config.update(**new_config)
-        files.write_mpp_config(mpp_config)
+        config_file.write(mpp_config)
 
 
 def __show_config(mpp_config):
