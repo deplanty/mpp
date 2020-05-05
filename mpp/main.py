@@ -6,7 +6,7 @@ import sys
 from mpp.src.commands import setup, config, freeze, installer, version
 
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 
 def main():
