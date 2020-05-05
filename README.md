@@ -18,6 +18,8 @@ $ pip install mpp
 
 ## Usage
 
+We will see the main commands here. For more information, check the [Wiki](https://github.com/deplanty/mpp/wiki)!
+
 Let's create a project together:
 
 ```
@@ -31,7 +33,7 @@ Just answer the questions, where the default values are between square brackets:
 
 ```
 $ mpp setup
-What is your project name? [mpp_tuto] MPP Tuto
+What is your project name? [mpp_tuto] mpp Tuto
 What is your author name? [username] Name
 
 The project's version is 0.0.0.
@@ -42,36 +44,6 @@ Use `mpp --help` to display all possible commands.
 Use `mpp <command> -h` to display the help for a command.
 Use `mpp config --list` to show your project settings.
 ```
-
-#### Environment
-
-After setuping your environment, some folders and files are created:
-
-```
-mpp_tuto/
-    resources/
-        images/
-            icon.ico
-    src/
-    .mpp_config
-    main.py
-```
-
-- **resources/**: contains your project's files;
-- **src/**: contains the sources of your project;
-- **.mpp_config**: stores yout project's settings;
-- **main.py**: main python file.
-
-`mpp` will create 2 more folders after freezing and generating an installer:
-
-```
-mpp_tuto/
-    installer/
-    target/
-```
-
-- **installer/**: contains the specification files needed to freeze and generate an installer;
-- **target/**: contains the created executable and installer;
 
 ### Show your configuration
 
@@ -114,16 +86,11 @@ Project 0.0.1
 $ mpp version ++
 Project 0.1.0
 
-$ mpp version +
-Project 0.1.1
-
 $ mpp version +++
 Project 1.0.0
 ```
 
 ### Freeze your project with [PyInstaller](https://www.pyinstaller.org/)
-
-If `PyInstaller` is not installed, `mpp` asks if it can do it for you:
 
 ```
 $ mpp freeze
@@ -138,15 +105,7 @@ Do you want to install it now (y/n)? [y]
 Executable can be found here: target/Project/Project.exe
 ```
 
-If you want to generate only the specification file:
-
-```
-$ mpp freeze --spec
-```
-
 ### Create an installer for your project with [NSIS](https://nsis.sourceforge.io/Main_Page)
-
-If `ShellExecAsUSer.dll` is not in the `installer` folder, `mpp` asks if it can download it for you:
 
 ```
 $ mpp installer
@@ -157,12 +116,6 @@ Downloading... Done
 [NSIS output]
 
 Installer can be found here: target/Project_setup.exe
-```
-
-If you want to generate only the specification file:
-
-```
-$ mpp installer --spec
 ```
 
 ## Credits
