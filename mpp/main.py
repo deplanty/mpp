@@ -6,7 +6,7 @@ import sys
 from mpp.src.commands import setup, config, freeze, installer, version
 
 
-__version__ = "0.1.7"
+__version__ = "0.1.8"
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
         help="Fast increment version number"
     )
     version_parser.set_defaults(func=version)
-    version_parser.add_argument("add", nargs="?", help="increment version number (+, ++, ...)")
+    version_parser.add_argument("number", nargs="?", help="new or increment version number (+, ++, ...)")
 
     args = parser.parse_args()
 
